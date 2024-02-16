@@ -1,18 +1,15 @@
 import { Grid, Header, Form, Segment, Button } from "semantic-ui-react";
 import { useMutation } from "@tanstack/react-query";
+import { mutationLogin } from "./mutation";
 
 export const Auth = () => {
-  const { mutate } = useMutation({
+  const { data, mutate } = useMutation({
     mutationKey: ["login"],
-    mutationFn: async () => {
-      // Your login logic goes here
-      console.log("Login logic");
-    },
+    mutationFn: mutationLogin,
   });
 
-  const handleLogin = () => {
-    // Call the mutate function to trigger the mutation
-    mutate();
+  const handleLogin = async () => {
+    await mutate();
   };
 
   return (
